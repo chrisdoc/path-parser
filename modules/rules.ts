@@ -30,7 +30,7 @@ const rules: IRule[] = [
     {
         name: 'url-parameter-splat',
         pattern: new RegExp(
-            `^\*([${defaultCharacterSet}-_]*[${defaultCharacterSet}]{1})`
+            `^\\*([${defaultCharacterSet}-_]*[${defaultCharacterSet}]{1})`
         ),
         regex: /([^?]*)/
     },
@@ -45,7 +45,7 @@ const rules: IRule[] = [
     {
         name: 'query-parameter',
         pattern: new RegExp(
-            `^(?:\?|&)(?::)?([${defaultCharacterSet}-_]*[${defaultCharacterSet}]{1})`
+            `^(?:\\?|&)(?::)?([${defaultCharacterSet}-_]*[${defaultCharacterSet}]{1})`
         )
     },
     {

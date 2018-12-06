@@ -45,7 +45,7 @@ var rules = [
     },
     {
         name: 'url-parameter-splat',
-        pattern: new RegExp("^*([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})"),
+        pattern: new RegExp("^\\*([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})"),
         regex: /([^?]*)/
     },
     {
@@ -57,7 +57,7 @@ var rules = [
     },
     {
         name: 'query-parameter',
-        pattern: new RegExp("^(?:?|&)(?::)?([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})")
+        pattern: new RegExp("^(?:\\?|&)(?::)?([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})")
     },
     {
         name: 'delimiter',
