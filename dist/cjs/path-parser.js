@@ -27,34 +27,37 @@ var __assign = Object.assign || function __assign(t) {
     return t;
 };
 
+var defaultCharacterSet = 'A-Za-zΑ-Ωα-ωίϊΐόάέύϋΰήώ0-9';
 var defaultOrConstrained = function (match) {
     return '(' +
-        (match ? match.replace(/(^<|>$)/g, '') : "[a-zA-Z0-9-_.~%':|=+\\*@]+") +
+        (match
+            ? match.replace(/(^<|>$)/g, '')
+            : "[" + defaultCharacterSet + "-_.~%':|=+\\*@]+") +
         ')';
 };
 var rules = [
     {
         name: 'url-parameter',
-        pattern: /^:([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})(<(.+?)>)?/,
+        pattern: new RegExp("^:([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})(<(.+?)>)?"),
         regex: function (match) {
             return new RegExp(defaultOrConstrained(match[2]));
         }
     },
     {
         name: 'url-parameter-splat',
-        pattern: /^\*([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})/,
+        pattern: new RegExp("^*([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})"),
         regex: /([^?]*)/
     },
     {
         name: 'url-parameter-matrix',
-        pattern: /^;([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})(<(.+?)>)?/,
+        pattern: new RegExp("^;([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})(<(.+?)>)?"),
         regex: function (match) {
             return new RegExp(';' + match[1] + '=' + defaultOrConstrained(match[2]));
         }
     },
     {
         name: 'query-parameter',
-        pattern: /^(?:\?|&)(?::)?([a-zA-Z0-9-_]*[a-zA-Z0-9]{1})/
+        pattern: new RegExp("^(?:?|&)(?::)?([" + defaultCharacterSet + "-_]*[" + defaultCharacterSet + "]{1})")
     },
     {
         name: 'delimiter',
@@ -68,7 +71,7 @@ var rules = [
     },
     {
         name: 'fragment',
-        pattern: /^([0-9a-zA-Z]+)/,
+        pattern: new RegExp("^([" + defaultCharacterSet + "]+)"),
         regex: function (match) { return new RegExp(match[0]); }
     }
 ];

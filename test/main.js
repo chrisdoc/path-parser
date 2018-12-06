@@ -296,4 +296,18 @@ describe('Path', function() {
             param: '1+2=3@*'
         })
     })
+
+    it('should support greek characters in url paramters`', () => {
+        const path = new Path('/test/:param')
+
+        path.test('/test/γυναικεία').should.eql({
+            param: 'γυναικεία'
+        })
+    })
+
+    it.only('should support greek characters fragments`', () => {
+        const path = new Path('/γυναικεία')
+
+        path.test('/γυναικεία').should.eql({})
+    })
 })
